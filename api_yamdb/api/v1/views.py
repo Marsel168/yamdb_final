@@ -1,35 +1,29 @@
 from secrets import token_hex
 
 from django.core.mail import send_mail
+from django.db.models import Avg
+from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, mixins, permissions, status, viewsets
 from rest_framework.decorators import action
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status, permissions, viewsets, mixins, filters
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
+from reviews.models import (Category, ConfirmationCode, Genre, Review, Title,
+                            User)
 
 from api_yamdb import settings
-from reviews.models import ConfirmationCode, User
-from django.db.models import Avg
-from django.shortcuts import get_object_or_404
-from reviews.models import Category, Genre, Title, Review
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.pagination import LimitOffsetPagination
-from .serializers import (
-    UserSerializer,
-    UserMeSerializer,
-    SignUpSerializer,
-    CategorySerializer,
-    CommentSerializer,
-    GenreSerializer,
-    ReviewSerializer,
-    TitleSerializer,
-    TitleWriteSerializer, ConfirmationCodeSerializer,
-)
 
-from .permissions import IsAdminOrReadOnly, ReviewCommentPermission
 from .filters import TitleFilter
+from .permissions import IsAdminOrReadOnly, ReviewCommentPermission
+from .serializers import (CategorySerializer, CommentSerializer,
+                          ConfirmationCodeSerializer, GenreSerializer,
+                          ReviewSerializer, SignUpSerializer, TitleSerializer,
+                          TitleWriteSerializer, UserMeSerializer,
+                          UserSerializer)
 
 
 class SignUpView(APIView):

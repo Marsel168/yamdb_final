@@ -1,12 +1,11 @@
-from csv import DictReader
-from datetime import datetime
-from django.core.management import BaseCommand
 import logging
 import sys
+from csv import DictReader
+from datetime import datetime
 
-from ...models import (
-    Category, Comment, Genre, Review, Title, TitleGenre, User
-)
+from django.core.management import BaseCommand
+
+from ...models import Category, Comment, Genre, Review, Title, TitleGenre, User
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

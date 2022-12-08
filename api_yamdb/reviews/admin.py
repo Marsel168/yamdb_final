@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import User
 
-from .models import Category, Comment, Genre, Review, Title, TitleGenre
+from .models import Category, Comment, Genre, Review, Title, TitleGenre, User
 
 
 @admin.register(Title)
