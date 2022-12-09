@@ -59,4 +59,4 @@ jobs:
         with:
           push: true
           file: ./api_yamdb/Dockerfile
-          tags: marsel168/yamdb:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/api_yamdb:latest
